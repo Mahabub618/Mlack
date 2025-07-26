@@ -10,8 +10,8 @@ func main() {
 	eventService := services.NewEventService() // Manages connected clients
 
 	r := gin.Default()
-	r.Static("/static", "./static") // Serves HTML/JS files
-	r.LoadHTMLGlob("static/*.html") // Allows rendering HTML
+	r.Static("/template", "./template") // Serves HTML/JS files
+	r.LoadHTMLGlob("template/*.html")   // Allows rendering HTML
 
 	// Routes
 	r.GET("/", handlers.IndexHandler)                                            // Homepage
