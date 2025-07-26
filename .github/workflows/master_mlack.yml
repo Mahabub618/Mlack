@@ -24,16 +24,6 @@ jobs:
       - name: Copy static template files
         run: xcopy /i template build\template
 
-  deploy:
-    runs-on: windows-latest
-    needs: build
-
-    steps:
-      - name: Download artifact from build job
-        uses: actions/download-artifact@v4
-        with:
-          name: .net-app
-
       - name: Copy static handlers files
         run: xcopy /i handlers build\handlers
 
@@ -43,8 +33,6 @@ jobs:
       - name: Copy static services files
         run: xcopy /i services build\services
 
-
-
       - name: Build
         run: go build -o build/go-app.exe -v
 
@@ -52,7 +40,6 @@ jobs:
         run: go test
 
       - name: Deploy to Azure Web App
-        id: deploy-to-webapp
         uses: azure/webapps-deploy@v3
         with:
           app-name: 'mlack'
