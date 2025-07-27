@@ -13,7 +13,7 @@ func main() {
 	r.Static("/template", "./template") // Serves HTML/JS files
 	r.LoadHTMLGlob("template/*.html")   // Allows rendering HTML
 
-	/// Routes
+	// Routes
 	r.GET("/", handlers.IndexHandler)                                            // Homepage
 	r.POST("/webhook/bitbucket", handlers.BitbucketWebhookHandler(eventService)) // Bitbucket sends data here
 	r.GET("/events", handlers.EventStreamHandler(eventService))                  // Browser connects here for live updates
